@@ -1,4 +1,6 @@
-# Postgres
+<p align="center">
+  <img height=400px width=600px style='display:block; margin:auto' src='https://d1dwq032kyr03c.cloudfront.net/upload/images/20200908/201297986I73Dv2Ocj.png'/>
+</p>  
 
 ### Download Postgres
 - Postgres
