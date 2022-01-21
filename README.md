@@ -22,8 +22,49 @@ conn = psycopg2.connect(host=host, port=5432, user=user, password=password)
 ```
 conn.autocommit = True  #自動commit
 ```
-- use
+### Use Case
+1. Research
 ```
-conn.cursor()
-conn.execute(SQL)
+sql = f'SELECT * FROM "{table}"'
+cursor = conn.cursor()
+cursor.execute(sql)
+data_list = cursor.fetchall()
+conn.close()
 ```
+2. Create  
+```
+sql = f'create table "{table}"\
+                      (id Serial Primary key          # Serial 為postgres序列(不須加入int)
+                      test1 varchar(25) Foreign key
+                      test2 int default 0
+                      test3 varchar(25) default Null)'
+cursor = conn.cursor()
+cursor.execute(sql)
+conn.commit()
+conn.close()
+```
+3. Update  
+```
+sql = f'update "{table}"(test1, test2) VALUES("test", "tewtt")'
+cursor = conn.cursor()
+cursor.execute(sql)
+conn.commit()
+conn.close()
+```
+4. Delete
+```
+sql = f'delete from "{table}" where test1 = "test"'
+cursor = conn.cursor()
+cursor.execute(sql)
+conn.commit()
+conn.close()
+```
+5. Reset Sequence
+```
+sql = f'ALTER SEQUENCE "{table}" RESTART WITH 1'
+cursor = conn.cursor()
+cursor.execute(sql)
+conn.commit()
+conn.close()
+```
+
